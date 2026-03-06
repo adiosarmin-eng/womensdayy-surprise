@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Women's Day 🌸</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body style="background-color: #f0f8ff;; border: 4px solid skyblue;>
+
+<div class="flowers"></div>
+
+<audio id="bgmusic" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+<h1 style="text-align: center; font-size:70px;;">💐 Happiest Women's Day 💐</h1>
+<p style="text-align: center;font-size: 40px;">A small surprise is waiting for you...</p>
+<img src="images/cat1.webp" style=" height:300px" class="center" >
+<button onclick="nextPage('page2')" style="font-size: 29px;">Click here to continue</button>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+<h2 style="text-align: center;font-size: 50px;">I have something for you 👀</h2>
+<p style="text-align: center;font-size: 30px;">Do you want to see it???..</p>
+
+<button onclick="startLetter()" style="font-size: 25px;">Yes 😃</button>
+<p style="font-size: 21px; text-align: center;">OR</p>
+<button onclick="noClick()" style="font-size: 25px;">No 🙃</button>
+
+<p id="nomsg" style="font-size: 25px; text-align: center;"></p>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3";>
+
+<div class="letter">
+
+<h2 style="text-align: center; font-size: 41px;">A Letter For You📜</h2>
+
+<p id="typewriter" style="text-align: center; font-size: 30px; color: #8B4513;font-family:cursive;"></p>
+
+<button class="replay" onclick="restart()">Replay 🔄</button>
+
+</div>
+
+<canvas id="confetti"></canvas>
+
+</div>
+
+<script src="script.js"></script>
+
+<body> <style>{
+    margin:0;
+    font-family:Georgia, serif;
+    background:linear-gradient(135deg,#ffd6e7,#efe1ff);
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    }
+    
+
+    
+    .center {
+    display: block;
+  margin-left: auto;
+margin-right: auto
+    }
+    
+    .page{
+    display:none;
+    }
+    
+    .active{
+    display:block;
+    animation:fadeIn 1s;
+    }
+    
+    button{
+    padding:12px 25px;
+    border:none;
+    border-radius:25px;
+    background:#ff6fa5;
+    color:white;
+    font-size:16px;;
+    cursor:pointer;
+    margin:auto;
+    display:block;
+    }
+    
+    button:hover{
+    background:#ff3f8e;
+    }
+    
+    .letter{
+    background: #faebd7;;
+    padding:40px;
+    max-width:600px;
+    border-radius:15px;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+    margin: auto;
+    display: block;
+}
+    
+    #typewriter{
+    font-size:18px;
+    line-height:1.6;
+    margin-top:20px;
+    }
+    
+    .replay{
+    margin-top:25px;
+    }
+    
+    @keyframes fadeIn{
+    from{opacity:0}
+    to{opacity:1}
+    }
+    
+   
+    
+    canvas{
+    position:fixed;
+    top:0;
+    left:0;
+    pointer-events:none;
+    }
+    </style>
+    <script>
+        function nextPage(id){
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active")
+})
+
+document.getElementById(id).classList.add("active")
+
+document.getElementById("bgmusic").play()
+
+}
+
+function noClick(){
+
+
+document.getElementById("nomsg").innerText =
+"Nice try 😏 but today you must click YES!"
+
+
+}
+
+function startLetter(){
+
+nextPage("page3")
+
+typeWriter()
+
+startConfetti()
+
+}
+
+/* TYPEWRITER LETTER */
+
+const text = `Dear Wonderful Woman,
+
+On this beautiful Women's Day,
+I just want to remind you how truly special you are.
+
+Your strength, kindness and warmth make the world brighter.
+Your smile has the power to make someone's day better.
+
+Never forget how valuable and inspiring you are.
+Today we celebrate you and everything that makes you amazing.
+
+Happy Women's Day 🌸💖
+`
+
+let i = 0
+
+function typeWriter(){
+
+if(i < text.length){
+
+document.getElementById("typewriter").innerHTML += text.charAt(i)
+
+i++
+
+setTimeout(typeWriter,40)
+
+}
+
+}
+
+
+
+
+
+/* RESTART */
+
+function restart(){
+
+location.reload()
+
+}
+</script>
+</body>
+</html>
