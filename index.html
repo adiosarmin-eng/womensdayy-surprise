@@ -117,28 +117,48 @@ pointer-events:none;
 from{opacity:0}
 to{opacity:1}
 }
+/* Floating flowers */
+
+.flowers span{
+position:absolute;
+font-size:25px;
+animation:float 10s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh)}
+100%{transform:translateY(-10vh)}
+}
+
+canvas{
+position:fixed;
+top:0;
+left:0;
+pointer-events:none;
+}
 
 </style>
 
 </head>
 
 <body>
+    <div class="flowers"></div>
 
-<audio id="bgmusic" loop>
-<source src="music.mp3" type="audio/mpeg">
+<audio autoplay loop muted id="bgmusic">
+<source src="images/perfecto.mpeg" type="audio/mpeg">
 </audio>
-
+        
 <!-- PAGE 1 -->
 
 <div class="page active" id="page1">
 
-<h1>💐 Happiest Women's Day 💐</h1>
+<h1>💐Happiest Women's Day💐</h1>
 
 <p>A small surprise is waiting for you...</p>
 
 <img src="images/cat1.webp" style="height: 300px;">
 
-<button onclick="nextPage('page2')">Click here to continue</button>
+<button onclick="playMusic();nextPage('page2')">Click here to continue, Miss Eye Roller 🙄🙄</button>
 
 </div>
 
@@ -181,6 +201,11 @@ to{opacity:1}
 <canvas id="confetti"></canvas>
 
 <script>
+    function playMusic(){
+    document.getElementById("bgmusic").muted = false;
+    document.getElementById("bgmusic").play();
+
+}
 
 function nextPage(id){
 
@@ -190,7 +215,7 @@ p.classList.remove("active")
 
 document.getElementById(id).classList.add("active")
 
-document.getElementById("bgmusic").play()
+
 
 }
 
@@ -199,7 +224,7 @@ document.getElementById("bgmusic").play()
 function noClick(){
 
 document.getElementById("nomsg").innerText =
-"Nice try 😏 but today you must click YES!"
+"Nice try 😏 but today you must click YES! (CHAL re, How dare you??..LOL)"
 
 document.getElementById("noimg").style.display="block"
 
@@ -217,17 +242,13 @@ typeWriter()
 
 /* TYPEWRITER */
 
-const text = `Dear Wonderful Woman,
-
-On this beautiful Women's Day,
-I just want to remind you how truly special you are.
-
-Your strength, kindness and warmth make the world brighter.
-Your smile has the power to make someone's day better.
-
-Never forget how valuable and inspiring you are.
-
-Happy Women's Day 🌸💖
+const text = `Dear Mademoiselle,,
+ Happiest Women's Day! On this day and every day, you deserve to be celebrated and uplifted..Maybe it's a tough time for you rn, 
+ but just remember, your strength isn't defined by your struggles, it's defined by how you rise above them!!(Just to remind) There is nothing impossible in 
+ this world for a woman 'cause she is born with the dedication to make everything possible..!! 
+Keep shining, keep pushing, and know that you're worthy of every bit of love and success coming your way! 
+(And as always)Use your spectacles more, eat healthy and sleep well!
+Cheers, proud of Yaa!!....
 `
 
 let i = 0
@@ -245,7 +266,23 @@ setTimeout(typeWriter,40)
 }
 
 }
+/* FLOWERS */
 
+const flowers = document.querySelector(".flowers")
+
+for(let i=0;i<20;i++){
+
+let flower = document.createElement("span")
+
+flower.innerHTML = "🌹"
+
+flower.style.left = Math.random()*100 + "vw"
+
+flower.style.animationDuration = (5 + Math.random()*10) + "s"
+
+flowers.appendChild(flower)
+
+}
 /* RESTART */
 
 function restart(){
